@@ -1,0 +1,21 @@
+﻿@model AspNetCoreAppPostgreSQL.Models.Investment
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Investments</h1>
+@{
+    if (@Model == null)
+    {
+        <p>No value added</p>
+        <br/>
+        <p>
+            <a asp-action="Create">Add value</a>
+        </p>
+    }
+    else
+    {
+        <p>Investments value: @Model.Investments</p>
+    }
+}

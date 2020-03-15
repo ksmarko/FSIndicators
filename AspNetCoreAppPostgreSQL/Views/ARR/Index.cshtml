@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AspNetCoreAppPostgreSQL.Models.ARR>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Records</h1>
+
+<br />
+@if (@ViewBag.Investments == null)
+{
+    <h5>Investments value not specified. Add on Investments page</h5>
+}
+else
+{
+    <h5>Investments value: @ViewBag.Investments</h5>
+}
+<br />
+
+@if (ViewBag.Metrics != null && ViewBag.Metrics.IsSuccess)
+{
+    <div class="alert alert-success alert-dismissable">
+        <span>Current Average rate of return value: <strong>@ViewBag.Metrics.Value.ToString("#.000")</strong></span>
+    </div>
+}
+
+<p>
+    <a asp-action="Export">Export</a>
+</p>
+<p>
+    <a asp-action="Create">Add record</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profit)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
